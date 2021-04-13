@@ -1,3 +1,10 @@
-// Show all events page
+// Show all events page "/events" routes => Show all projects
+function AllEventsPage() {
+	return (
+		<div>
+			<h1>AllEventsPage</h1>
+		</div>
+	);
+}
 
-// "/events" routes => Show all projects
+export default AllEventsPage;
