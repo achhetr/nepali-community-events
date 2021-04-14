@@ -1,19 +1,10 @@
-import { useRouter } from "next/router";
-
-import { getEventById } from "../../dummy-data";
+import EventList from "../../components/events/EventList";
+import { getAllEvents } from "../../dummy-data";
 
 function AllEventsPage(props) {
-	const router = useRouter();
-	const { eventId } = router.query;
-	const event = getEventById(eventId);
+	const events = getAllEvents();
 
-	if (!event) return <p>No event found!</p>;
-
-	return (
-		<div>
-			<h1>AllEventsPage</h1>
-		</div>
-	);
+	return <EventList items={events} />;
 }
 
 export default AllEventsPage;
