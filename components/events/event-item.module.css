@@ -79,11 +79,12 @@
 @media (min-width: 768px) {
   .item {
     flex-direction: row;
+    position: relative;
   }
 
   .item img {
     width: 40%;
-    height: 14rem;
+    height: 18rem;
   }
 
   .content {
@@ -97,6 +98,9 @@
   }
 
   .actions {
+    position: absolute;
+    bottom: 0.5rem;
+    right: 1rem;
     flex-direction: row;
     justify-content: flex-end;
   }
