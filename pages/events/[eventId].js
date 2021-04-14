@@ -29,7 +29,4 @@ function EventDetailPage(props) {
 		</Fragment>
 	);
 }
-
 export default EventDetailPage;
-
-// explore one event "/events/[id]" routes => Show information about the project

@@ -1,11 +1,16 @@
+import { Fragment } from "react";
 import EventList from "../../components/events/EventList";
+import EventsSearch from "../../components/events/EventsSearch";
 import { getAllEvents } from "../../dummy-data";
 
 function AllEventsPage(props) {
 	const events = getAllEvents();
-
-	return <EventList items={events} />;
+	return (
+		<Fragment>
+			<EventsSearch />
+			<EventList items={events} />
+		</Fragment>
+	);
 }
 
 export default AllEventsPage;
-// Show all events page "/events" routes => Show all projects
