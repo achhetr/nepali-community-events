@@ -1,5 +1,6 @@
 import { Fragment, useEffect, useState } from "react";
 import { useRouter } from "next/router";
+import Head from "next/head";
 import EventList from "../../components/events/EventList";
 import ResultsTitle from "../../components/events/ResultsTitle";
 import Button from "../../components/ui/Button";
@@ -28,15 +29,29 @@ function FilteredEventsPage(props) {
 		}
 	}, [data]);
 
-	if (!loadedEvents) {
-		return <p className="center">Loading...</p>;
-	}
-
 	const filterData = router.query.slug;
 	const [filteredYear, filteredMonth] = filterData;
 	const numYear = +filteredYear;
 	const numMonth = +filteredMonth;
 
+	const pageHeadData = (
+		<Head>
+			<title>Filtered Events</title>
+			<meta
+				name="description"
+				content={`All events for year and month ${numYear}/ ${numMonth}`}
+			/>
+		</Head>
+	);
+
+	if (!loadedEvents) {
+		return (
+			<Fragment>
+				{pageHeadData}
+				<p className="center">Loading...</p>
+			</Fragment>
+		);
+	}
 	if (
 		isNaN(numYear) ||
 		isNaN(numMonth) ||
@@ -48,6 +63,7 @@ function FilteredEventsPage(props) {
 	) {
 		return (
 			<Fragment>
+				{pageHeadData}
 				<ErrorAlert>
 					<p>Invalid filters</p>
 				</ErrorAlert>
@@ -69,6 +85,7 @@ function FilteredEventsPage(props) {
 	if (!filteredEvents || filteredEvents.length === 0) {
 		return (
 			<Fragment>
+				{pageHeadData}
 				<ErrorAlert>
 					<p>No events found for the chosen filters</p>
 				</ErrorAlert>
@@ -82,6 +99,7 @@ function FilteredEventsPage(props) {
 	const date = new Date(numYear, numMonth - 1);
 	return (
 		<Fragment>
+			{pageHeadData}
 			<ResultsTitle date={date} />
 			<EventList items={filteredEvents} />
 		</Fragment>
